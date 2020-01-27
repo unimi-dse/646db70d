@@ -43,14 +43,22 @@ getYahooData <- function(period1, period2, granularity, index){
   return(zoo(historical, order.by = date))
 }
 ############################PLOTLY###########
-plot <- plot_ly( x=~index(historical), y=~historical$Close, type="scatter", mode = "lines", fill = "tonextx",
+period1 <- toUnixTimestamp("2019-09-14 01:00:00")
+period2 <- toUnixTimestamp("2020-01-25 01:00:00")
+granularity <- toInterval("daily")
+index <- "GOOG"
+historical = getYahooData(period1, period2, granularity, index)
+min <- format(round(min(historical$Low) - 2*min(historical$Low)/100 , 2), nsmall = 2) 
+max <- format(round(max(historical$High) + 2*max(historical$High/100), 2), nsmall = 2) 
+plot <- plot_ly( x = index(historical), y = historical$Close, type="scatter", mode = "lines", fill = "tozeroy", fillcolor = "blue", 
                  hoverinfo = "text",text=paste(index(historical), 
                                                "<br> Close: ",  format(round(historical$Close, 2), nsmall = 2),
                                                "<br> Open: ",  format(round(historical$Open, 2), nsmall = 2),
                                                "<br> High: ",  format(round(historical$High, 2), nsmall = 2),
                                                "<br> Low: ",  format(round(historical$Low, 2), nsmall = 2))
                  ) %>% 
-  layout(xaxis = list (title = 'Date'), 
-         yaxis = list(title = 'Price'),
-         hovertemplate = )
+  layout(xaxis = list (title = 'Date',
+                       zeroline = FALSE), 
+         yaxis = list(title = 'Price',
+                      range = c(min, max)))
 
