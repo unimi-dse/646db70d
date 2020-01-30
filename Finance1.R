@@ -1,6 +1,5 @@
 #Project Stock
 library(jsonlite)
-library(zoo)
 library(plotly)
 library(shiny)
 
@@ -88,17 +87,18 @@ server <- function (input, output){
                      historical <- data()
                      min <- format(round(min(historical$Low)- 2*min(historical$Low)/100 , 2), nsmall = 2)
                      max <- format(round(max(historical$High) + 2*max(historical$High/100), 2), nsmall = 2)
-                     plot <- plot_ly( x = historical$Date, y = historical$Close, type="scatter", mode = "lines", fill = "tozeroy", fillcolor = "blue", 
-                        hoverinfo = "text",text=paste(historical$Date, 
-                         "<br> Close: ",  format(round(historical$Close, 2), nsmall = 2),
-                         "<br> Open: ",  format(round(historical$Open, 2), nsmall = 2),
-                         "<br> High: ",  format(round(historical$High, 2), nsmall = 2),
-                         "<br> Low: ",  format(round(historical$Low, 2), nsmall = 2))
-                     ) %>% 
-                     layout(xaxis = list (title = "Dates",
-                             zeroline = FALSE), 
-                     yaxis = list(title = "Price",
-                            range = c(min, max)))
+                     plot <- plot_ly( x = historical$Date, type="candlestick", open = historical$Open, close = historical$Close, high = historical$High, low = historical$Low,
+                                  hoverinfo = "text",text=paste(historical$Date, 
+                                 "<br> Close: ",  format(round(historical$Close, 2), nsmall = 2),
+                                 "<br> Open: ",  format(round(historical$Open, 2), nsmall = 2),
+                                 "<br> High: ",  format(round(historical$High, 2), nsmall = 2),
+                                 "<br> Low: ",  format(round(historical$Low, 2), nsmall = 2))
+                               ) %>%
+                             add_lines(x = historical$Date, y= historical$Open, line = list(width = 0.75), inherit = F
+                                       ) %>%
+                             layout(xaxis = list (title = "Dates", zeroline = FALSE), 
+                                    yaxis = list(title = "Price",
+                                    range = c(min, max)))
     })
   }
 shinyApp(ui, server)
