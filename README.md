@@ -1,10 +1,10 @@
 # 646db70d
 
-#Stock Searcher Package
+# Stock Search Package
 
 This package allow user to search for any stock symbol and immediately get a candlestik graph for a selected date range and granularity with opening, high, low and closing price.
 
-##Installation 
+## Installation 
 
 Install the R package 
 
@@ -16,22 +16,23 @@ Load the package
 ```
 require(stockSearch)
 ```
-##Usage
+## Usage
 
 ```
 stockSearch()
 ```
 This will load the Shiny Application
 
-##Documentation
+## Documentation
 
 The documentation of the function can be seen by typing:
 ```
 ?stockSearch()
 ```
-##Technologies
+## Technologies
 * [Shiny](https://shiny.rstudio.com/)
 * [Plotly](https://plot.ly/)
 * R language
-##Author
+
+## Author
 **Luca Romano** - (https://github.com/rluca96)
