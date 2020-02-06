@@ -1,6 +1,6 @@
 # 646db70d
 
-# Stock Searcher Package
+# Stock Search Package
 
 This package allow user to search for any stock symbol and immediately get a candlestik graph for a selected date range and granularity with opening, high, low and closing price.
 
