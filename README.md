@@ -33,6 +33,5 @@ The documentation of the function can be seen by typing:
 * [Shiny](https://shiny.rstudio.com/)
 * [Plotly](https://plot.ly/)
 * R language
-
 ## Author
 **Luca Romano** - (https://github.com/rluca96)

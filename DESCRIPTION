@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Luca Romano
 Maintainer: Luca Romano <luca.romano5@studenti.unimi.it>
 Description: The package grabs stock data of selected company, during a selected period and with a specific periodicity from yahoo finance and plot them into a responsive candlestick graph. 
-Import: shiny, ggplot2, plotly, quantmod, zoo, xts
+Import: shiny, ggplot2, plotly, quantmod, zoo, xts, dplyr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
